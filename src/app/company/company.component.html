@@ -1,0 +1,170 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div style="text-align:center">
+        <h1>Welcome {{username | titlecase}}</h1>
+    </div>
+    <section>
+        <div>
+            <div class="company-container">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Add Course
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="company-input">
+                        <div class="company-companyCode">
+                            <mat-form-field>
+                                <input matInput placeholder="Enter Course Id" name="courseId | uppercase" [(ngModel)]="courseModel.courseId">
+                            </mat-form-field>
+                        </div>
+                        <div class="company-companyName">
+                            <mat-form-field>
+                                <input matInput placeholder="Enter Course Name" name="courseName" [(ngModel)]="courseModel.courseName">
+                            </mat-form-field>
+                        </div>
+                        <div class="company-ceo">
+                            <mat-form-field>
+                                <input matInput placeholder="Please enter course Duration" name="courseDuration" [(ngModel)]="courseModel.courseDuration">
+                            </mat-form-field>
+                        </div>
+                        <div class="company-turnOver">
+                            <mat-form-field>
+                                <input matInput placeholder="Enter description of the course" name="courseDescription" [(ngModel)]="courseModel.courseDescription">
+                            </mat-form-field>
+                        </div>
+                        <div class="company-website">
+                            <mat-form-field>
+                                <input matInput placeholder="Technology" name="technology" [(ngModel)]="courseModel.technology">
+                            </mat-form-field>
+                        </div>
+                        <div class="company-stockPrice">
+                            <mat-form-field>
+                                <input matInput placeholder="Lunch Url" name="lunchUrl" [(ngModel)]="courseModel.lunchUrl">
+                            </mat-form-field>
+                        </div>
+                        <mat-action-row>
+                            <div class="container-fluid padding">
+                                <div class="row">
+                                    <div class="col-md-2" style="margin-left:60px;">
+                                        <button mat-raised-button color="primary" (click)="addCompany()">Add Course</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-action-row>
+                    </div>
+                </mat-expansion-panel>
+                <br>
+                <br><br>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title style="color: black;">All Listed Courses</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div>
+                        <table border="1" style="width: 100%">
+                            <caption style="text-align:center; font-size: large; font-weight: 500;">All Courses</caption>
+                            <thead>
+                                <tr>
+                                    <th>Course Id</th>
+                                    <th>Course Name</th>
+                                    <th>Course Duration</th>
+                                    <th>Course Description</th>
+                                    <th>Technology</th>
+                                    <th>Lunch URL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let c of courseArray">
+                                    <td>{{c.courseId}}</td>
+                                    <td>{{c.courseName}}</td>
+                                    <td>{{c.courseDuration}}</td>
+                                    <td>{{c.courseDescription}}</td>
+                                    <td>{{c.technology}}</td>
+                                    <td>{{c.lunchUrl}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                    <button mat-stroked-button class="viewAllbutton" color="blue" (click)="getAllCompanyDetails()">Refresh</button>
+                </mat-expansion-panel>
+                <hr>
+            </div>
+        </div>
+    </section>
+    <br><br><br><br><br>
+    <div class="searchCompany">
+        <input placeholder="Enter Course Id" name="courseId" [(ngModel)]="courseId"> <button (click)="courseDetails()">Search Course</button> <br>
+        <div *ngIf="courseFound">
+            Course Id => {{courseModel.courseId}} <br>
+            Course Name => {{courseModel.courseName}}<br>
+            Course Duration => {{courseModel.courseDuration}}<br>
+            Course Description => {{courseModel.courseDescription}}<br>
+            Technology => {{courseModel.technology}}<br>
+            Lunch Url => {{courseModel.lunchUrl}}<br>
+        </div>
+        <br>
+        <small *ngIf="!courseFound" style="color: red;"> {{errorMessage}} </small>
+    </div>
+    <br><br><br><br><br>
+    <div class="deleteCompanyById">
+        <input placeholder="Enter Course Id" name="deleteId" [(ngModel)]="deleteId"> <button (click)="deleteCompanyById()">Delete Course</button> <br>
+        <div style="color: red;">{{message}}</div>
+    </div>
+    <br><br><br><br><br>
+    <div class="company-container">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Modify Course
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="company-input">
+                <div class="company-companyCode">
+                    <mat-form-field>
+                        <input matInput placeholder="Enter Course Id" name="courseId" [(ngModel)]="courseModel.courseId">
+                    </mat-form-field>
+                </div>
+                <div class="company-companyName">
+                    <mat-form-field>
+                        <input matInput placeholder="Enter Course Name" name="courseName" [(ngModel)]="courseModel.courseName">
+                    </mat-form-field>
+                </div>
+                <div class="company-ceo">
+                    <mat-form-field>
+                        <input matInput placeholder="Enter Course Duration" name="courseDuration" [(ngModel)]="courseModel.courseDuration">
+                    </mat-form-field>
+                </div>
+                <div class="company-turnOver">
+                    <mat-form-field>
+                        <input matInput placeholder="Course Description" name="courseDescription" [(ngModel)]="courseModel.courseDescription">
+                    </mat-form-field>
+                </div>
+                <div class="company-website">
+                    <mat-form-field>
+                        <input matInput placeholder="Technology" name="technology" [(ngModel)]="courseModel.technology">
+                    </mat-form-field>
+                </div>
+                <div class="company-stockPrice">
+                    <mat-form-field>
+                        <input matInput placeholder="Lunch URL" name="lunchUrl" [(ngModel)]="courseModel.lunchUrl">
+                    </mat-form-field>
+                </div>
+                <mat-action-row>
+                    <div class="container-fluid padding">
+                        <div class="row">
+                            <div class="col-md-2" style="margin-left:60px;">
+                                <button mat-raised-button color="primary" (click)="modifyStockPrice()">Modify</button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-action-row>
+            </div>
+        </mat-expansion-panel>
+    </div>
+    <br><br><br><br><br>
+</body>

@@ -1,0 +1,27 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+</head>
+<body>
+    <div class="imgcontainer">
+        <img class="img-thumbnail" 
+          src="https://static.vecteezy.com/system/resources/thumbnails/005/170/926/small/college-hat-wifi-wireless-signal-for-online-learning-education-logo-design-free-vector.jpg" 
+          alt="thumbnil" width="300" height="300" style="border: 0ch; border-radius: 10px;">
+    </div>
+    <div>
+      <form (ngSubmit)="handleLogin()">
+          <small *ngIf="isValid">Inavalid Credential!</small>
+        
+          <div class="container">
+            <label><b>Username</b></label>
+            <input type="text" text="Username" placeholder="User Name" name="username" [(ngModel)]="username">
+        
+            <label><b>Password</b></label>
+            <input type="password" text="Password" name="password" placeholder="Password" [(ngModel)]="password">
+      
+            <button type="submit">Log In</button>
+          </div>
+        </form>
+      </div>
+</body>

@@ -1,0 +1,93 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <br>
+    <div style="text-align:center">
+        <h1 style="color: blue;">Welcome {{username | titlecase}}</h1>
+    </div>
+    <hr>
+    <div>
+        <div class="company-container">
+            <div style="text-align: center;">
+                <h3 style="font-weight: 1000; font-size: larger; font-family: auto"><u>All Courses</u></h3>
+            </div>
+            <div class="search-div">
+                <button mat-raised-button color="primary" title="Add new Course" style="margin-left: 0px;" (click)="addNewCompany()">
+                    <mat-icon>add</mat-icon>
+                </button>
+                <button mat-mini-fab color="primary" title="Refresh" style="float: right; margin-right: 0px;" (click)="getAllCompanyDetails()">
+                    <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+            <mat-form-field appearance="standard">
+                <mat-label floatLabel="never">Filter</mat-label>
+                <input matInput [(ngModel)]="searchKey" (keyup)="applyFilter()" placeholder="Ex. Java or .net" #input>
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()"><mat-icon>close</mat-icon></button>
+            </mat-form-field>
+            <table mat-table [dataSource]="listofCoursesData" class="mat-elevation-z8" style="width: 100%;" matSort>
+                <ng-container matColumnDef="courseId">
+                    <th mat-header-cell *matHeaderCellDef> Course Id </th>
+                    <td mat-cell *matCellDef="let element"><a [routerLink]="['/coursedetails',element.courseId]">{{element.courseId}}</a></td>
+                </ng-container>
+  
+                <ng-container matColumnDef="courseName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Course Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.courseName}} </td>
+                </ng-container>
+                    
+                <ng-container matColumnDef="courseDuration">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration(hr) </th>
+                    <td mat-cell *matCellDef="let element">{{element.courseDuration}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="courseDescription">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+                    <td mat-cell *matCellDef="let element"> {{element.courseDescription}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="technology">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Technology </th>
+                    <td mat-cell *matCellDef="let element"> {{element.technology}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="lunchUrl">
+                    <th mat-header-cell *matHeaderCellDef> Lunch </th>
+                    <td mat-cell *matCellDef="let element"> <a [routerLink]="['/coursedetails',element.courseId]">{{element.lunchUrl}}</a></td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <button mat-icon-button title="Purches Course" (click)="modifyStockPrice(row)"><mat-icon>launch</mat-icon></button>
+                        <button mat-icon-button color="warn" title="Delete" (click)="deleteCompanyById(row.courseId)">
+                            <mat-icon>delete_outline</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="loading">
+                    <mat-footer-cell *matFooterCellDef colspan="6" style="text-align: center;"> Loading Data... </mat-footer-cell>
+                </ng-container>
+                  
+                <ng-container matColumnDef="noData">
+                    <mat-footer-cell *matFooterCellDef colspan="6"> No data. </mat-footer-cell>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide' : listofCoursesData != null}"></mat-footer-row>
+                <mat-footer-row *matFooterRowDef="['noData']"  [ngClass]="{'hide' : !(listofCoursesData != null && listofCoursesData.data.length == 0)}"></mat-footer-row>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+        </div>
+        <hr>
+    </div>
+    <br><br><br>
+</body>
+<br><br><br><br><br><br><br>

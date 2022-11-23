@@ -1,0 +1,43 @@
+<br>
+<div class="container">
+    <mat-toolbar style="background-color: #abde90">
+        <span class="fill-remaining-space"></span>
+        <span>Purches this Course</span>
+        <span class="fill-remaining-space"></span>
+        <button class="btn-dialog-close" mat-button (click)="onClose()" tabindex="-1">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </mat-toolbar>
+    <form [formGroup]="companyService.form" class="normal-form" (submit)="onSubmit()">
+        <mat-grid-list cols="2" rowHeight="300px">
+            <mat-grid-tile>
+                <div class="controles-container">
+                    <mat-form-field>
+                        <mat-label>Course Id</mat-label>
+                        <input formControlName="courseId" matInput [readonly]="true">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Course Name</mat-label>
+                        <input formControlName="courseName" matInput [readonly]="true">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Course Duration</mat-label>
+                        <input formControlName="courseDuration" matInput [readonly]="true">
+                    </mat-form-field>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="controles-container">
+                    <mat-form-field>
+                        <mat-label>Course Description</mat-label>
+                        <input formControlName="courseDescription" matInput [readonly]="true">
+                    </mat-form-field>
+                    <div class="button-row">
+                        <button mat-raised-button color="primary" type="submit">Add to cart</button>
+                        <button mat-raised-button color="warn" (click)="onClose()">Cancel</button>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </form>
+</div>

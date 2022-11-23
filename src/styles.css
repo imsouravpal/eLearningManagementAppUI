@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*@import url(https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.min.css);*/
+/*@import url(https://unpkg.com/browse/bootstrap@3.4.1/dist/css/bootstrap.min.css);*/
+
+snack-bar-Container.success {
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+snack-bar-Container.warn {
+    background-color: red;
+    color: #fff;
+}
+
+snack-bar-Container.notification simple-snack-bar {
+    font-size: 18px !important;
+    font-weight: bold;
+}

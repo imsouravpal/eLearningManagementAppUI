@@ -1,0 +1,51 @@
+<br>
+<div class="container">
+    <mat-toolbar style="background-color: rgb(249 171 0 / 46%)">
+        <span class="fill-remaining-space"></span>
+        <span>Add New Course</span>
+        <span class="fill-remaining-space"></span>
+        <button class="btn-dialog-close" mat-button (click)="onClose()" tabindex="-1">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </mat-toolbar>
+    <form [formGroup]="companyService.form" class="normal-form" (submit)="onSubmit()">
+        <mat-grid-list cols="2" rowHeight="300px">
+            <mat-grid-tile>
+                <div class="controles-container">
+                    <small style="color: rgb(0, 38, 255)">**All fileds are required.</small>
+                    <mat-form-field>
+                        <input formControlName="courseId" matInput placeholder="Course Id">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="courseName" matInput placeholder="Course Name">
+                        <mat-error *ngIf="companyService.form.controls['courseName'].errors?.['minlength']">Minimum 3 charactors needed</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="courseDescription" matInput placeholder="Description">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" floatLabel="always">
+                        <mat-label>Course Duration</mat-label>
+                        <input formControlName="courseDuration" matInput type="number" class="example-right-align" placeholder="0.00">
+                        <span matPrefix>hr&nbsp;</span>
+                    </mat-form-field>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="controles-container">
+                    <mat-form-field>
+                        <input formControlName="technology" matInput placeholder="Technology">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Lunch Url</mat-label>
+                        <input formControlName="lunchUrl" matInput placeholder="Eg: www.xyz.com">
+                        <mat-error *ngIf="companyService.form.controls['lunchUrl'].invalid">Please Provide a valid url</mat-error>
+                    </mat-form-field>
+                    <div class="button-row">
+                        <button mat-raised-button color="primary" type="submit" [disabled]="companyService.form.invalid">Submit</button>
+                        <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </form>
+</div>

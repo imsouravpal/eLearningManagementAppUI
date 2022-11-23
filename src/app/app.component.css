@@ -1,0 +1,18 @@
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+mat-drawer {
+    background: #2a4b97;
+}
+
+mat-drawer-container {
+    height: 100%;
+}

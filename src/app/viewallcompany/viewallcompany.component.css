@@ -1,0 +1,59 @@
+table {
+    width: 100%;
+}
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.hide {
+    display: none;
+}
+
+mat-footer-row mat-footer-cell {
+    justify-content: center;
+    font-style: italic;
+}
+
+.search-div {
+    margin: 10px;
+}
+
+spacer {
+    flex: 1 1 auto;
+}
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.btn-dialog-close {
+    width: 45px;
+    min-width: 0px !important;
+    height: 40px;
+    padding: 0px !important;
+}
+
+.blink {
+    animation: blink 2s /*steps(1, end)*/ infinite;
+
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+        transform: scale(5);
+    }
+    51% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        color: blue;
+        opacity: 1;
+        transform: scale(1);
+    }
+}
